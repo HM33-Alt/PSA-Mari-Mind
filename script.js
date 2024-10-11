@@ -164,7 +164,7 @@ document.getElementById('login-btn').addEventListener('click', () => {
         // Hide login form and show logout button
         document.getElementById('login-container').style.display = 'none'; 
         document.getElementById('logout-btn').style.display = 'block'; // Make logout button visible
-        document.getElementById('alertsContainer').style.display = 'block'; // Ensure alerts container is visible
+        document.getElementById('alertSection').style.display = 'block'; // Show alert input and button
     } else {
         alert('Invalid username or password.');
     }
@@ -179,11 +179,11 @@ document.getElementById('logout-btn').addEventListener('click', () => {
     document.getElementById('logout-btn').style.display = 'none'; 
     document.getElementById('username').value = '';
     document.getElementById('password').value = '';
-    document.getElementById('alertsContainer').style.display = 'block'; // Keep alerts container visible
+    document.getElementById('alertSection').style.display = 'none'; // Hide alert input and button
 });
 
-// Initialize alerts container to be visible
-document.getElementById('alertsContainer').style.display = 'block'; // No need to hide it
+// Initialize alerts container to be visible by default
+document.getElementById('alertsContainer').style.display = 'block'; // Always visible
 
 // Add alert functionality
 document.getElementById('add-alert-btn').addEventListener('click', () => {
