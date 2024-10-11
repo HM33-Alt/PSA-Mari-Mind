@@ -9,105 +9,105 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // PSA Locations (example data)
 const psaLocations = [
-    { name: "Bangladesh", coords: [23.685, 90.3563] },
+    { name: "Bangladesh", coords: [23.685 , 90.3563] },
+    { name: "China", coords: [35.8617, 104.1954] },
+    { name: "India", coords: [20.5937, 78.9629] },
+    { name: "Indonesia", coords: [-0.7893, 113.9213] },
+    { name: "Japan", coords: [36.2048, 138.2529] },
+    { name: "Kazakhstan", coords: [48.0196, 66.9237] },
+    { name: "Malaysia", coords: [4.2105, 101.9758] },
+    { name: "Oman", coords: [21.5129, 55.9233] },
+    { name: "Qatar", coords: [25.276987, 51.520008] },
+    { name: "Saudi Arabia", coords: [23.8859, 45.0792] },
     { name: "Singapore", coords: [1.3521, 103.8198] },
-    // Add other locations...
+    { name: "South Korea", coords: [35.9078, 127.7669] },
+    { name: "Thailand", coords: [15.8700, 100.9925] },
+    { name: "UAE", coords: [23.4241, 53.8478] },
+    { name: "Vietnam", coords: [14.0583, 108.2772] },
+    { name: "Belgium", coords: [50.8503, 4.3517] },
+    { name: "Czech Republic", coords: [49.8175, 15.4730] },
+    { name: "Denmark", coords: [56.2639, 9.5018] },
+    { name: "France", coords: [46.6034, 1.8883] },
+    { name: "Germany", coords: [51.1657, 10.4515] },
+    { name: "Ireland", coords: [53.4129, -8.2439] },
+    { name: "Italy", coords: [41.8719, 12.5674] },
+    { name: "Netherlands", coords: [52.3792, 4.8994] },
+    { name: "Poland", coords: [51.9194, 19.1451] },
+    { name: "Portugal", coords: [39.3999, -8.2245] },
+    { name: "Romania", coords: [45.9432, 24.9668] },
+    { name: "Spain", coords: [40.4637, -3.7492] },
+    { name: "Sweden", coords: [60.1282, 18.6435] },
+    { name: "Türkiye", coords: [38.9637, 35.2433] },
+    { name: "United Kingdom", coords: [55.3781, -3.4360] },
+    { name: "Argentina", coords: [-38.4161, -63.6167] },
+    { name: "Brazil", coords: [-14.2350, -51.9253] },
+    { name: "Canada", coords: [56.1304, -106.3468] },
+    { name: "Chile", coords: [-35.6751, -71.5430] },
+    { name: "Colombia", coords: [4.5709, -74.2973] },
+    { name: "Ecuador", coords: [-1.8312, -78.1834] },
+    { name: "Panama", coords: [8.9824, -79.5199] },
+    { name: "Peru", coords: [-9.1900, -75.0152] },
+    { name: "Uruguay", coords: [-32.5228, -55.7658] },
+    { name: "USA", coords: [37.0902, -95.7129] },
+    { name: "Egypt", coords: [26.8206, 30.8025] },
+    { name: "Morocco", coords: [31.7917, -7.0926] },
+    { name: "Australia", coords: [-25.2744, 133.7751] },
+    { name: "New Zealand", coords: [-40.9006, 174.886] },
 ];
 
-// Function to fetch news articles from an RSS feed
-async function fetchRSSFeed(url) {
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+// Example of dummy news articles
+const dummyNews = [
+    {
+        title: "Singapore Port Operations Update",
+        description: "Singapore’s port has experienced some minor delays due to weather conditions.",
+        fullText: "Singapore’s port has experienced some minor delays due to weather conditions. Port officials have stated that the delays are expected to last for a few hours, but operations should resume as normal later in the day."
+    },
+    {
+        title: "New Expansion Plans for Singapore Port",
+        description: "Singapore’s port authority has announced plans for a new expansion to accommodate more cargo.",
+        fullText: "Singapore’s port authority has announced plans for a new expansion to accommodate more cargo and improve port efficiency. The expansion is expected to be completed within the next three years and will increase capacity by 20%."
     }
-    const text = await response.text();
-    const parser = new DOMParser();
-    const xml = parser.parseFromString(text, "application/xml");
+];
 
-    const items = xml.querySelectorAll("item");
-    return Array.from(items).map(item => ({
-        title: item.querySelector("title").textContent,
-        link: item.querySelector("link").textContent,
-        description: item.querySelector("description").textContent
-    }));
-}
-
-// Show news in a popup with dummy news for testing purposes
-async function showNews(portName) {
-    const dummyArticles = [
-        {
-            title: `Breaking: Major Development in ${portName}`,
-            link: `https://example.com/article1`,
-            description: `A major development has occurred in ${portName}, shaking the local community.`
+async function fetchSummary(newsText) {
+    const response = await fetch('http://localhost:3000/summarize', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
         },
-        {
-            title: `${portName} Port Expansion Announced`,
-            link: `https://example.com/article2`,
-            description: `The government has announced a major expansion project for the ${portName} port.`
-        },
-        {
-            title: `Economic Impact of ${portName} Trade Routes`,
-            link: `https://example.com/article3`,
-            description: `Experts discuss the economic significance of the ${portName} trade routes.`
-        }
-    ];
-
-    let newsContent = `<h2>Latest News for ${portName}</h2>`;
-    dummyArticles.forEach(article => {
-        newsContent += `<p><a href="${article.link}" target="_blank">${article.title}</a></p>`;
+        body: JSON.stringify({ newsText })
     });
 
-    // Popup with dummy news content
+    const data = await response.json();
+    return data.summary;
+}
+
+async function showNews(portName) {
+    let newsContent = `<h2>Latest News for ${portName}</h2>`;
+    
+    // Iterate through the dummy news articles and summarize each one
+    for (let article of dummyNews) {
+        // Fetch the summarized version of the news
+        const summarizedText = await fetchSummary(article.fullText);
+
+        // Display the summarized version in the popup
+        newsContent += `
+            <p><strong>${article.title}</strong></p>
+            <p>${summarizedText}</p>
+        `;
+    }
+
     L.popup()
         .setLatLng(psaLocations.find(loc => loc.name === portName).coords)
         .setContent(newsContent)
         .openOn(map);
 }
 
-
 // Add markers to the map
 psaLocations.forEach(location => {
     const marker = L.marker(location.coords).addTo(map);
     marker.bindPopup(`<b>${location.name}</b><br><button onclick="showNews('${location.name}')">Show News</button>`);
 });
-
-// Example alerts (not modified)
-const alerts = [
-    {
-        port: "Port of Singapore",
-        message: "High congestion reported. Possible delays in loading/unloading.",
-        severity: "Warning",
-        solutions: [
-            "Consider rerouting to Port of Tanjung Pelepas.",
-            "Increase loading/unloading manpower."
-        ]
-    },
-    // Add more alerts as needed
-];
-
-// Function to display alerts for the selected port
-function displayAlerts(portName) {
-    const alertList = document.getElementById('alert-list');
-    alertList.innerHTML = ''; // Clear previous alerts
-
-    const alert = alerts.find(a => a.port === portName);
-    if (alert) {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `<strong>${alert.severity}:</strong> ${alert.message}`;
-        
-        // Add suggested solutions
-        const solutions = document.createElement('ul');
-        alert.solutions.forEach(solution => {
-            const solutionItem = document.createElement('li');
-            solutionItem.textContent = solution;
-            solutions.appendChild(solutionItem);
-        });
-        listItem.appendChild(solutions);
-        alertList.appendChild(listItem);
-    } else {
-        alertList.innerHTML = `<li>No current alerts for ${portName}.</li>`;
-    }
-}
 
 // Add click event listeners to each marker for alert display
 psaLocations.forEach(location => {
