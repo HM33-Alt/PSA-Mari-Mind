@@ -69,31 +69,16 @@ const dummyNews = [
     }
 ];
 
-async function fetchSummary(newsText) {
-    const response = await fetch('http://localhost:3000/summarize', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ newsText })
-    });
-
-    const data = await response.json();
-    return data.summary;
-}
-
+// Function to display mock news
 async function showNews(portName) {
     let newsContent = `<h2>Latest News for ${portName}</h2>`;
     
-    // Iterate through the dummy news articles and summarize each one
+    // Iterate through the dummy news articles and display each one
     for (let article of dummyNews) {
-        // Fetch the summarized version of the news
-        const summarizedText = await fetchSummary(article.fullText);
-
-        // Display the summarized version in the popup
         newsContent += `
             <p><strong>${article.title}</strong></p>
-            <p>${summarizedText}</p>
+            <p>${article.description}</p>
+            <p>${article.fullText}</p>
         `;
     }
 
