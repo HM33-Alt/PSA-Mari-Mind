@@ -9,7 +9,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // PSA Locations (example data)
 const psaLocations = [
-    { name: "Bangladesh", coords: [23.685], [90.3563] },
+    { name: "Bangladesh", coords: [23.685 , 90.3563] },
     { name: "China", coords: [35.8617, 104.1954] },
     { name: "India", coords: [20.5937, 78.9629] },
     { name: "Indonesia", coords: [-0.7893, 113.9213] },
