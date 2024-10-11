@@ -69,7 +69,22 @@ const dummyNews = [
     }
 ];
 
-// Function to display mock news
+// Example of dummy alerts
+const dummyAlerts = {
+    "Singapore": [
+        "Severe weather warning issued for the Singapore area.",
+        "Increased security checks at the port.",
+        "Operational delays expected due to high traffic."
+    ],
+    "Rotterdam": [
+        "Maintenance work will cause temporary delays in cargo handling.",
+        "Security alert issued for the shipping lanes."
+    ],
+    // Add alerts for other locations as needed
+};
+
+
+// Function to display mock news and alerts
 async function showNews(portName) {
     let newsContent = `<h2>Latest News for ${portName}</h2>`;
     
@@ -82,10 +97,37 @@ async function showNews(portName) {
         `;
     }
 
+    // Display news in popup
     L.popup()
         .setLatLng(psaLocations.find(loc => loc.name === portName).coords)
         .setContent(newsContent)
         .openOn(map);
+
+    // Update the alerts list
+    updateAlerts(portName);
+}
+
+// Function to update alerts list
+function updateAlerts(portName) {
+    const alertsList = document.getElementById("alertsList");
+    alertsList.innerHTML = ""; // Clear existing alerts
+
+    // Fetch alerts for the selected port
+    const alerts = dummyAlerts[portName];
+
+    // Check if there are any alerts
+    if (alerts && alerts.length > 0) {
+        alerts.forEach(alert => {
+            const listItem = document.createElement("li");
+            listItem.textContent = alert;
+            alertsList.appendChild(listItem);
+        });
+    } else {
+        // Display a message if no alerts
+        const listItem = document.createElement("li");
+        listItem.textContent = "No alerts available.";
+        alertsList.appendChild(listItem);
+    }
 }
 
 // Add markers to the map
