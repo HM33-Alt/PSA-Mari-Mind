@@ -5,14 +5,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #e3f2fd; /* Light sky blue background */
+    background-color: #00008B; /* Light sky blue background */
 }
 
 .popup {
     max-width: 300px;
     font-size: 14px;
-    background-color: #000000; /* White background for the popup */
-    border: 1px solid #88ccee; /* Light blue border */
+    background-color: #00008B; /* White background for the popup */
+    border: 1px solid #00008B; /* Light blue border */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
     padding: 15px;
@@ -26,6 +26,7 @@ body {
     margin-top: 20px; /* Space above the map */
     background-color: #b3e5fc; /* Soft blue background for the map */
 }
+
 #alert-dashboard {
     background-color: #f8d7da; /* Soft red background */
     border: 1px solid #f5c6cb; /* Light red border */
