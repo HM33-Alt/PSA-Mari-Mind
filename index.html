@@ -25,17 +25,37 @@
             margin-top: 20px;
             padding: 0 20px; /* Optional: padding for aesthetics */
         }
+        /* Add styles for login and logout buttons */
+        #login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #logout-btn {
+            display: none; /* Initially hidden */
+        }
     </style>
 </head>
 <body>
     <h1>PSA Port Operations Dashboard</h1> 
+
+    <div id="login-container">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button id="login-btn">Login</button>
+        <button id="logout-btn">Logout</button>
+    </div>
+
     <div id="map"></div>
 
     <div id="alertsContainer" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;">
-    <h3>Alerts</h3>
-    	<ul id="alertsList">
-        	<!-- Alerts will be dynamically inserted here -->
-    	</ul>
+        <h3>Alerts</h3>
+        <input type="text" id="alert-input" placeholder="Enter alert" />
+        <button id="add-alert-btn">Add Alert</button>
+        <ul id="alertsList">
+            <!-- Alerts will be dynamically inserted here -->
+        </ul>
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

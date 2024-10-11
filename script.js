@@ -142,3 +142,62 @@ psaLocations.forEach(location => {
     marker.bindPopup(`<b>${location.name}</b><br><button onclick="showNews('${location.name}')">Show News</button>`);
     marker.on('click', () => displayAlerts(location.name)); // Attach click event
 });
+
+let isAuthenticated = false;
+
+// Sample user data
+const userData = {
+    username: 'admin',
+    password: 'password' // Change this in a production environment
+};
+
+// Handle login
+document.getElementById('login-btn').addEventListener('click', () => {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Simple authentication check
+    if (username === userData.username && password === userData.password) {
+        isAuthenticated = true;
+        alert('Login successful!');
+        document.getElementById('login-container').style.display = 'none'; // Hide login form
+        document.getElementById('logout-btn').style.display = 'block'; // Show logout button
+        document.getElementById('alertsContainer').style.display = 'block'; // Show alerts container
+    } else {
+        alert('Invalid username or password.');
+    }
+});
+
+// Handle logout
+document.getElementById('logout-btn').addEventListener('click', () => {
+    isAuthenticated = false;
+    document.getElementById('login-container').style.display = 'flex'; // Show login form
+    document.getElementById('logout-btn').style.display = 'none'; // Hide logout button
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('alertsContainer').style.display = 'none'; // Hide alerts container
+});
+
+// Initialize alerts container to be hidden
+document.getElementById('alertsContainer').style.display = 'none';
+
+// Add alert functionality
+document.getElementById('add-alert-btn').addEventListener('click', () => {
+    if (!isAuthenticated) {
+        alert('You must be logged in to add alerts.');
+        return;
+    }
+    
+    const alertInput = document.getElementById('alert-input');
+    const alertText = alertInput.value.trim();
+    
+    if (alertText) {
+        const listItem = document.createElement("li");
+        listItem.textContent = alertText;
+        document.getElementById("alertsList").appendChild(listItem);
+        alertInput.value = ''; // Clear input field
+    } else {
+        alert('Please enter an alert.');
+    }
+});
+
