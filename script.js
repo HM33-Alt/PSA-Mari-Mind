@@ -160,9 +160,11 @@ document.getElementById('login-btn').addEventListener('click', () => {
     if (username === userData.username && password === userData.password) {
         isAuthenticated = true;
         alert('Login successful!');
-        document.getElementById('login-container').style.display = 'none'; // Hide login form
-        document.getElementById('logout-btn').style.display = 'block'; // Show logout button
-        document.getElementById('alertsContainer').style.display = 'block'; // Show alerts container
+
+        // Hide login form and show logout button
+        document.getElementById('login-container').style.display = 'none'; 
+        document.getElementById('logout-btn').style.display = 'block'; // Make logout button visible
+        document.getElementById('alertsContainer').style.display = 'block'; // Ensure alerts container is visible
     } else {
         alert('Invalid username or password.');
     }
@@ -171,26 +173,28 @@ document.getElementById('login-btn').addEventListener('click', () => {
 // Handle logout
 document.getElementById('logout-btn').addEventListener('click', () => {
     isAuthenticated = false;
-    document.getElementById('login-container').style.display = 'flex'; // Show login form
-    document.getElementById('logout-btn').style.display = 'none'; // Hide logout button
+
+    // Show login form and hide logout button
+    document.getElementById('login-container').style.display = 'flex'; 
+    document.getElementById('logout-btn').style.display = 'none'; 
     document.getElementById('username').value = '';
     document.getElementById('password').value = '';
-    document.getElementById('alertsContainer').style.display = 'none'; // Hide alerts container
+    document.getElementById('alertsContainer').style.display = 'block'; // Keep alerts container visible
 });
 
-// Initialize alerts container to be hidden
-document.getElementById('alertsContainer').style.display = 'none';
+// Initialize alerts container to be visible
+document.getElementById('alertsContainer').style.display = 'block'; // No need to hide it
 
 // Add alert functionality
 document.getElementById('add-alert-btn').addEventListener('click', () => {
     if (!isAuthenticated) {
         alert('You must be logged in to add alerts.');
-        return;
+        return; // Prevent adding alerts if not logged in
     }
-    
+
     const alertInput = document.getElementById('alert-input');
     const alertText = alertInput.value.trim();
-    
+
     if (alertText) {
         const listItem = document.createElement("li");
         listItem.textContent = alertText;
@@ -200,4 +204,3 @@ document.getElementById('add-alert-btn').addEventListener('click', () => {
         alert('Please enter an alert.');
     }
 });
-

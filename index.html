@@ -34,6 +34,7 @@
         }
         #logout-btn {
             display: none; /* Initially hidden */
+            margin-top: 10px; /* Spacing */
         }
     </style>
 </head>
@@ -50,13 +51,14 @@
     <div id="map"></div>
 
     <div id="alertsContainer" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;">
-        <h3>Alerts</h3>
-        <input type="text" id="alert-input" placeholder="Enter alert" />
-        <button id="add-alert-btn">Add Alert</button>
-        <ul id="alertsList">
-            <!-- Alerts will be dynamically inserted here -->
-        </ul>
+    	<h3>Alerts</h3>
+    	<input type="text" id="alert-input" placeholder="Enter alert" />
+    	<button id="add-alert-btn">Add Alert</button>
+    	<ul id="alertsList">
+        	<!-- Alerts will be dynamically inserted here -->
+    	</ul>
     </div>
+
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script> 
