@@ -9,11 +9,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // PSA Locations (example data)
 const psaLocations = [
-<<<<<<< HEAD
-    { name: "Port of Singapore", coords: [1.2833, 103.8333] },
-    { name: "Port of Antwerp", coords: [51.2510, 4.4215] },
-    // Add more locations as needed
-=======
     { name: "Bangladesh", coords: [23.685 , 90.3563] },
     { name: "China", coords: [35.8617, 104.1954] },
     { name: "India", coords: [20.5937, 78.9629] },
@@ -58,7 +53,6 @@ const psaLocations = [
     { name: "Morocco", coords: [31.7917, -7.0926] },
     { name: "Australia", coords: [-25.2744, 133.7751] },
     { name: "New Zealand", coords: [-40.9006, 174.886] },
->>>>>>> map-updates
 ];
 
 // Add markers to the map with news fetching functionality
