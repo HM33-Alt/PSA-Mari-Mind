@@ -21,7 +21,7 @@ psaLocations.forEach(location => {
 });
 
 // Fetch news for a specific port
-const apiKey = 'YOUR_API_KEY'; // Replace with your News API key
+const apiKey = 'YOUR_API_KEY'; 
 
 async function fetchNews(portName) {
     const response = await fetch(`https://newsapi.org/v2/everything?q=${encodeURIComponent(portName)}&apiKey=${apiKey}`);
