@@ -253,3 +253,12 @@ function changeLanguage(lng) {
         });
     });
 }
+
+// public/script.js
+fetch('http://localhost:5000/api/test')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message); // Should log "Backend is connected!"
+        document.getElementById('test-message').innerText = data.message;
+    })
+    .catch(error => console.error('Error:', error));
