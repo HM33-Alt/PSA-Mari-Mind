@@ -3,29 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PSA Port Operations Dashboard</title>
+    <title>PSA Port Knowledge Portal</title>
     <link rel="stylesheet" href="styles.css"> 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        /* Basic styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
         h1 {
-            text-align: center; /* Center the title */
-            margin: 20px 0; /* Add margin for spacing */
+            text-align: center;
+            margin: 20px 0;
         }
         #map {
             height: 600px;
             width: 100%;
         }
-        #alert-list {
-            margin-top: 20px;
-            padding: 0 20px; /* Optional: padding for aesthetics */
+        /* Container for upload and display of SOPs */
+        #sop-container {
+            margin: 20px;
         }
-        /* Add styles for login and logout buttons */
+        #upload-form {
+            margin-bottom: 20px;
+        }
+        #sop-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        #sop-list li {
+            margin-bottom: 10px;
+        }
+        /* Styling for login/logout buttons */
         #login-container {
             display: flex;
             flex-direction: column;
@@ -33,35 +42,59 @@
             margin-bottom: 20px;
         }
         #logout-btn {
-            display: none; /* Initially hidden */
-            margin-top: 10px; /* Spacing */
+            display: none;
+            margin-bottom: 20px;
+        }
+        /* Styling for knowledge form */
+        .knowledge-form {
+            margin: 20px;
+        }
+        #knowledgeDisplay {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>PSA Port Operations Dashboard</h1> 
+    <h1>PSA Port Knowledge Portal</h1>
 
+    <!-- Login Section -->
     <div id="login-container">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
         <button id="login-btn">Login</button>
-        <button id="logout-btn">Logout</button>
     </div>
 
-    <div id="map"></div>
-
-    <div id="alertsContainer" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; display: none;">
-    	<h3>Alerts</h3>
-    	<div id="alertSection" style="display: none;"> <!-- Wrap input and button in a div -->
-        	<input type="text" id="alert-input" placeholder="Enter alert" />
-        	<button id="add-alert-btn">Add Alert</button>
-    	</div>
-    	<ul id="alertsList">
-        	<!-- Alerts will be dynamically inserted here -->
-    	</ul>
+    <!-- Logout Button -->
+    <div id="button-container" style="text-align: center;">
+        <button id="logout-btn" style="display: none;">Logout</button>
     </div>
 
+    <div class="map-container">
+        <!-- Map area -->
+        <div id="map"></div>
+    </div>
 
+    <div id="add-knowledge-container" class="knowledge-form" style="display: none;">
+        <h2>Add Knowledge</h2>
+        <form id="knowledgeForm">
+            <label for="knowledgeTitle">Title:</label>
+            <input type="text" id="knowledgeTitle" name="title" required><br><br>
+
+            <label for="knowledgeDescription">Description:</label>
+            <textarea id="knowledgeDescription" name="description" required></textarea><br><br>
+
+            <label for="knowledgeLocation">Location:</label>
+            <input type="text" id="knowledgeLocation" name="location" readonly required><br><br>
+
+            <button type="submit">Submit Knowledge</button>
+        </form>
+    </div>
+
+    <!-- Knowledge Display Section -->
+    <div id="knowledgeDisplay">
+        <h2>Knowledge Hub</h2>
+        <p>Select a marker on the map to see knowledge articles.</p>
+    </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script> 
