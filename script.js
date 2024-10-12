@@ -191,7 +191,7 @@ i18next.init({
         },
         zh: {
             translation: {
-                "welcome": "PSA港口站",
+                "welcome": "PSA Port-Stop",
                 "login": "登录",
                 "logout": "登出",
                 "add_knowledge": "添加知识",
@@ -223,7 +223,7 @@ i18next.init({
         },
         ta: {
             translation: {
-                "welcome": "PSA துறைமுக நிறுத்தம்",
+                "welcome": "PSA Port-Stop",
                 "login": "உள்நுழைய",
                 "logout": "வெளியேறு",
                 "add_knowledge": "அறிவைச் சேர்க்கவும்",
