@@ -262,3 +262,26 @@ fetch('http://localhost:5000/api/test')
         document.getElementById('test-message').innerText = data.message;
     })
     .catch(error => console.error('Error:', error));
+
+fetch('http://localhost:5000/api/files', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        location: 'Location 1',
+        file: 'file-name.pdf'
+    }),
+})
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
