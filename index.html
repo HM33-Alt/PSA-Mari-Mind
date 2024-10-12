@@ -8,33 +8,44 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.0/dist/leaflet.timedimension.control.min.css" />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Banschrift:wght@400;700&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Banschrift', sans-serif;
+            background-color: #001f3f; /* Navy blue background */
+            color: #ffffff; /* White text color */
             margin: 0;
             padding: 0;
         }
-        h1 {
+
+        h1, h2 {
             text-align: center;
-            margin: 20px 0;
+            color: #ffffff; /* White text color */
         }
+
         #map {
             height: 600px;
             width: 100%;
         }
+
         /* Container for upload and display of SOPs */
         #sop-container {
             margin: 20px;
         }
+
         #upload-form {
             margin-bottom: 20px;
         }
+
         #sop-list {
             list-style-type: none;
             padding: 0;
         }
+
         #sop-list li {
             margin-bottom: 10px;
         }
+
         /* Styling for login/logout buttons */
         #login-container {
             display: flex;
@@ -42,16 +53,44 @@
             align-items: center;
             margin-bottom: 20px;
         }
+
         #logout-btn {
             display: none;
             margin-bottom: 20px;
         }
+
         /* Styling for knowledge form */
-        .knowledge-form {
+        .knowledge-form, #file-upload-container, #knowledgeDisplay {
             margin: 20px;
+            padding: 20px;
+            background-color: #00264d; /* Darker navy blue */
+            border-radius: 10px;
         }
+
         #knowledgeDisplay {
             margin-top: 20px;
+        }
+
+        input, textarea, button {
+            font-family: 'Banschrift', sans-serif;
+            background-color: #004080; /* Darker navy blue */
+            color: #ffffff; /* White text color */
+            border: none;
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0059b3; /* Lighter navy blue on hover */
+        }
+
+        label {
+            color: #ffffff; /* White text color */
         }
     </style>
 </head>
