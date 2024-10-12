@@ -4,7 +4,7 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "start": "concurrently \"npm run start-server\" \"npm run start-frontend\"",
+    "start": "concurrently --kill-others --handle-input \"npm run start-server\" \"npm run start-frontend\"",
     "start-server": "node ./backend/server.js",
     "start-frontend": "http-server ./public",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,13 +13,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/mongoose": "^5.11.97",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "express": "^4.21.1",
-    "mongoose": "^8.7.1",
-    "concurrently": "^8.0.1"
+    "express-session": "^1.18.1",
+    "fs": "^0.0.1-security",
+    "mongoose": "^8.7.1"
   },
   "devDependencies": {
+    "concurrently": "^9.0.1",
     "http-server": "^14.1.1"
   }
 }
