@@ -1,40 +1,31 @@
-// Initialize the map
-const map = L.map('map').setView([20.0, 0.0], 2); // Center globally
-
-// Add a tile layer (OpenStreetMap)
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-// Knowledge Locations (example data)
+// Example knowledgeLocations array
 const knowledgeLocations = [
-    { name: "Bangladesh", coords: [23.685, 90.3563] },
-    { name: "China", coords: [35.8617, 104.1954] },
-    { name: "India", coords: [20.5937, 78.9629] },
-    { name: "Japan", coords: [36.2048, 138.2529] },
-    { name: "France", coords: [46.6034, 1.8883] },
-    { name: "USA", coords: [37.0902, -95.7129] },
-    { name: "Brazil", coords: [-14.2350, -51.9253] },
-    { name: "Australia", coords: [-25.2744, 133.7751] },
+    { name: 'Location 1', coords: [51.505, -0.09] },
+    { name: 'Location 2', coords: [51.515, -0.1] },
+    // Add more locations as needed
 ];
 
-// Example knowledge articles
-const knowledgeArticles = {
-    "Bangladesh": [{ title: "Article 1", description: "Description 1", fullText: "Full Text 1" }],
-    "China": [{ title: "Article 2", description: "Description 2", fullText: "Full Text 2" }],
-    "India": [{ title: "Article 3", description: "Description 3", fullText: "Full Text 3" }],
-    "Japan": [{ title: "Article 4", description: "Description 4", fullText: "Full Text 4" }],
-    "France": [{ title: "Article 5", description: "Description 5", fullText: "Full Text 5" }],
-    "USA": [{ title: "Article 6", description: "Description 6", fullText: "Full Text 6" }],
-    "Brazil": [{ title: "Article 7", description: "Description 7", fullText: "Full Text 7" }],
-    "Australia": [{ title: "Article 8", description: "Description 8", fullText: "Full Text 8" }]
-};
+// Initialize the map
+const map = L.map('map').setView([51.505, -0.09], 13);
 
-// Function to display knowledge articles below the map
+// Add a base tile layer (e.g., OpenStreetMap)
+const baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+// Create a layer group for the markers
+const markerLayer = L.layerGroup().addTo(map);
+
+// Object to store knowledge articles
+const knowledgeArticles = {};
+
+// Object to store uploaded files
+const uploadedFiles = {};
+
+// Function to display knowledge articles
 function displayKnowledge(locationName) {
     const knowledgeContent = document.getElementById('knowledgeDisplay');
-    knowledgeContent.innerHTML = `<h2>Knowledge Hub: ${locationName}</h2>`;
+    knowledgeContent.innerHTML = `<h2>Knowledge Hub</h2><p>Select a marker on the map to see knowledge articles.</p>`;
 
     // Display all articles for the selected location
     const articles = knowledgeArticles[locationName];
@@ -51,12 +42,24 @@ function displayKnowledge(locationName) {
     } else {
         knowledgeContent.innerHTML += "<p>No articles available for this location.</p>";
     }
+
+    // Display uploaded files for the selected location
+    const files = uploadedFiles[locationName];
+    if (files && files.length > 0) {
+        knowledgeContent.innerHTML += "<h3>Uploaded Files:</h3><ul>";
+        files.forEach(file => {
+            knowledgeContent.innerHTML += `<li>${file.name}</li>`;
+        });
+        knowledgeContent.innerHTML += "</ul>";
+    } else {
+        knowledgeContent.innerHTML += "<p>No files uploaded for this location.</p>";
+    }
 }
 
-// Add markers to the map with ability to contribute knowledge
+// Add markers to the marker layer group
 knowledgeLocations.forEach(location => {
-    const marker = L.marker(location.coords).addTo(map);
-    
+    const marker = L.marker(location.coords).addTo(markerLayer);
+
     // Update knowledge display section on marker click
     marker.on('click', () => {
         displayKnowledge(location.name); // Display articles below the map
@@ -84,11 +87,11 @@ document.getElementById('login-btn').addEventListener('click', () => {
         alert('Login successful!');
 
         // Hide login form and show logout button
-        document.getElementById('login-container').style.display = 'none'; 
+        document.getElementById('login-container').style.display = 'none';
         document.getElementById('logout-btn').style.display = 'block'; // Show logout button
 
-        // Show the add knowledge section
-        document.getElementById('add-knowledge-container').style.display = 'block'; // Show add knowledge form
+        // Show the content container
+        document.getElementById('content-container').style.display = 'flex';
     } else {
         alert('Invalid username or password.');
     }
@@ -99,9 +102,11 @@ document.getElementById('logout-btn').addEventListener('click', () => {
     isAuthenticated = false;
 
     // Show login form and hide logout button
-    document.getElementById('login-container').style.display = 'flex'; 
+    document.getElementById('login-container').style.display = 'flex';
     document.getElementById('logout-btn').style.display = 'none'; // Hide logout button
-    document.getElementById('add-knowledge-container').style.display = 'none'; // Hide add knowledge form
+
+    // Hide the content container
+    document.getElementById('content-container').style.display = 'none';
 });
 
 // Handle form submission for the "Add Knowledge" section
@@ -136,5 +141,29 @@ document.getElementById('knowledgeForm').addEventListener('submit', function (ev
     this.reset();
 
     // Update the displayed articles for the current location (regardless of login status)
+    displayKnowledge(location);
+});
+
+document.getElementById('fileUploadForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    const location = document.getElementById('knowledgeLocation').value;
+
+    if (file && location) {
+        // Store the uploaded file
+        uploadedFiles[location] = uploadedFiles[location] || [];
+        uploadedFiles[location].push(file);
+
+        alert(`File ${file.name} uploaded successfully to ${location}!`);
+    } else {
+        alert("Please select a file and a location to upload.");
+    }
+
+    // Reset the form
+    this.reset();
+
+    // Update the displayed articles and files for the current location
     displayKnowledge(location);
 });

@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSA Port Knowledge Portal</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.0/dist/leaflet.timedimension.control.min.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,26 +56,27 @@
     </style>
 </head>
 <body>
-    <h1>PSA Port Knowledge Portal</h1>
+<h1>PSA Port Knowledge Portal</h1>
 
-    <!-- Login Section -->
-    <div id="login-container">
-        <input type="text" id="username" placeholder="Username" />
-        <input type="password" id="password" placeholder="Password" />
-        <button id="login-btn">Login</button>
-    </div>
+<!-- Login Section -->
+<div id="login-container">
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button id="login-btn">Login</button>
+</div>
 
-    <!-- Logout Button -->
-    <div id="button-container" style="text-align: center;">
-        <button id="logout-btn" style="display: none;">Logout</button>
-    </div>
+<!-- Logout Button -->
+<div id="button-container" style="text-align: center;">
+    <button id="logout-btn" style="display: none;">Logout</button>
+</div>
 
-    <div class="map-container">
-        <!-- Map area -->
-        <div id="map"></div>
-    </div>
+<div class="map-container">
+    <!-- Map area -->
+    <div id="map"></div>
+</div>
 
-    <div id="add-knowledge-container" class="knowledge-form" style="display: none;">
+<div id="content-container" style="display: none;">
+    <div id="add-knowledge-container" class="knowledge-form">
         <h2>Add Knowledge</h2>
         <form id="knowledgeForm">
             <label for="knowledgeTitle">Title:</label>
@@ -90,13 +92,22 @@
         </form>
     </div>
 
-    <!-- Knowledge Display Section -->
+    <div id="file-upload-container">
+        <h2>Upload Files</h2>
+        <form id="fileUploadForm">
+            <input type="file" id="fileInput" name="file" accept=".pdf, .docx, .xlsx" required><br><br>
+            <button type="submit">Upload File</button>
+        </form>
+    </div>
+
     <div id="knowledgeDisplay">
         <h2>Knowledge Hub</h2>
         <p>Select a marker on the map to see knowledge articles.</p>
     </div>
+</div>
 
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="script.js"></script> 
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.0/dist/leaflet.timedimension.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,17 @@
+#content-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 20px;
+}
+
+#add-knowledge-container, #file-upload-container, #knowledgeDisplay {
+    flex: 1;
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
