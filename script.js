@@ -253,5 +253,3 @@ function changeLanguage(lng) {
         });
     });
 }
-
-// Existing code...
