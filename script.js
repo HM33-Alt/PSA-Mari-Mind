@@ -48,7 +48,8 @@ function displayKnowledge(locationName) {
     if (files && files.length > 0) {
         knowledgeContent.innerHTML += "<h3>Uploaded Files:</h3><ul>";
         files.forEach(file => {
-            knowledgeContent.innerHTML += `<li>${file.name}</li>`;
+            const fileURL = URL.createObjectURL(file);
+            knowledgeContent.innerHTML += `<li><a href="${fileURL}" download="${file.name}">${file.name}</a></li>`;
         });
         knowledgeContent.innerHTML += "</ul>";
     } else {
@@ -167,3 +168,90 @@ document.getElementById('fileUploadForm').addEventListener('submit', function (e
     // Update the displayed articles and files for the current location
     displayKnowledge(location);
 });
+
+// Initialize i18next with translations
+i18next.init({
+    lng: 'en', // default language
+    resources: {
+        en: {
+            translation: {
+                "welcome": "PSA Port-Stop",
+                "login": "Login",
+                "logout": "Logout",
+                "add_knowledge": "Add Knowledge",
+                "title": "Title:",
+                "description": "Description:",
+                "location": "Location:",
+                "submit_knowledge": "Submit Knowledge",
+                "upload_files": "Upload Files",
+                "upload_file": "Upload File",
+                "knowledge_hub": "Knowledge Hub",
+                "select_marker": "Select a marker on the map to see knowledge articles."
+            }
+        },
+        zh: {
+            translation: {
+                "welcome": "PSA港口站",
+                "login": "登录",
+                "logout": "登出",
+                "add_knowledge": "添加知识",
+                "title": "标题:",
+                "description": "描述:",
+                "location": "位置:",
+                "submit_knowledge": "提交知识",
+                "upload_files": "上传文件",
+                "upload_file": "上传文件",
+                "knowledge_hub": "知识中心",
+                "select_marker": "选择地图上的标记以查看知识文章。"
+            }
+        },
+        ms: {
+            translation: {
+                "welcome": "PSA Port Stop",
+                "login": "Log masuk",
+                "logout": "Log keluar",
+                "add_knowledge": "Tambah Pengetahuan",
+                "title": "Tajuk:",
+                "description": "Penerangan:",
+                "location": "Lokasi:",
+                "submit_knowledge": "Hantar Pengetahuan",
+                "upload_files": "Muat Naik Fail",
+                "upload_file": "Muat Naik Fail",
+                "knowledge_hub": "Pusat Pengetahuan",
+                "select_marker": "Pilih penanda di peta untuk melihat artikel pengetahuan."
+            }
+        },
+        ta: {
+            translation: {
+                "welcome": "PSA துறைமுக நிறுத்தம்",
+                "login": "உள்நுழைய",
+                "logout": "வெளியேறு",
+                "add_knowledge": "அறிவைச் சேர்க்கவும்",
+                "title": "தலைப்பு:",
+                "description": "விளக்கம்:",
+                "location": "இடம்:",
+                "submit_knowledge": "அறிவைச் சமர்ப்பிக்கவும்",
+                "upload_files": "கோப்புகளைப் பதிவேற்றவும்",
+                "upload_file": "கோப்பைப் பதிவேற்றவும்",
+                "knowledge_hub": "அறிவு மையம்",
+                "select_marker": "அறிவுக் கட்டுரைகளைப் பார்க்க வரைபடத்தில் ஒரு குறியைத் தேர்ந்தெடுக்கவும்."
+            }
+        }
+    }
+}, function(err, t) {
+    document.querySelectorAll('[data-i18n]').forEach(function(element) {
+        element.textContent = t(element.getAttribute('data-i18n'));
+    });
+});
+
+// Function to change the language
+function changeLanguage(lng) {
+    i18next.changeLanguage(lng, function(err, t) {
+        if (err) return console.error(err);
+        document.querySelectorAll('[data-i18n]').forEach(function(element) {
+            element.textContent = t(element.getAttribute('data-i18n'));
+        });
+    });
+}
+
+// Existing code...

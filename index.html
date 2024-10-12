@@ -95,18 +95,18 @@
     </style>
 </head>
 <body>
-<h1>PSA Port Knowledge Portal</h1>
+<h1 data-i18n="welcome">Welcome</h1>
 
 <!-- Login Section -->
 <div id="login-container">
     <input type="text" id="username" placeholder="Username" />
     <input type="password" id="password" placeholder="Password" />
-    <button id="login-btn">Login</button>
+    <button id="login-btn" data-i18n="login">Login</button>
 </div>
 
 <!-- Logout Button -->
 <div id="button-container" style="text-align: center;">
-    <button id="logout-btn" style="display: none;">Logout</button>
+    <button id="logout-btn" style="display: none;" data-i18n="logout">Logout</button>
 </div>
 
 <div class="map-container">
@@ -116,37 +116,46 @@
 
 <div id="content-container" style="display: none;">
     <div id="add-knowledge-container" class="knowledge-form">
-        <h2>Add Knowledge</h2>
+        <h2 data-i18n="add_knowledge">Add Knowledge</h2>
         <form id="knowledgeForm">
-            <label for="knowledgeTitle">Title:</label>
+            <label for="knowledgeTitle" data-i18n="title">Title:</label>
             <input type="text" id="knowledgeTitle" name="title" required><br><br>
 
-            <label for="knowledgeDescription">Description:</label>
+            <label for="knowledgeDescription" data-i18n="description">Description:</label>
             <textarea id="knowledgeDescription" name="description" required></textarea><br><br>
 
-            <label for="knowledgeLocation">Location:</label>
+            <label for="knowledgeLocation" data-i18n="location">Location:</label>
             <input type="text" id="knowledgeLocation" name="location" readonly required><br><br>
 
-            <button type="submit">Submit Knowledge</button>
+            <button type="submit" data-i18n="submit_knowledge">Submit Knowledge</button>
         </form>
     </div>
 
     <div id="file-upload-container">
-        <h2>Upload Files</h2>
+        <h2 data-i18n="upload_files">Upload Files</h2>
         <form id="fileUploadForm">
             <input type="file" id="fileInput" name="file" accept=".pdf, .docx, .xlsx" required><br><br>
-            <button type="submit">Upload File</button>
+            <button type="submit" data-i18n="upload_file">Upload File</button>
         </form>
     </div>
 
     <div id="knowledgeDisplay">
-        <h2>Knowledge Hub</h2>
-        <p>Select a marker on the map to see knowledge articles.</p>
+        <h2 data-i18n="knowledge_hub">Knowledge Hub</h2>
+        <p data-i18n="select_marker">Select a marker on the map to see knowledge articles.</p>
     </div>
+</div>
+
+<!-- Language Switcher -->
+<div id="language-switcher" style="text-align: center; margin-bottom: 20px;">
+    <button onclick="changeLanguage('en')">English</button>
+    <button onclick="changeLanguage('zh')">中文</button>
+    <button onclick="changeLanguage('ms')">Bahasa Melayu</button>
+    <button onclick="changeLanguage('ta')">தமிழ்</button>
 </div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.0/dist/leaflet.timedimension.min.js"></script>
+<script src="https://unpkg.com/i18next/i18next.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
