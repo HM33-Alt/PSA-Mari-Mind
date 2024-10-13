@@ -10,6 +10,7 @@ const port = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 // Configure CORS
 const allowedOrigins = ['http://192.168.1.8:8080'];
@@ -47,12 +48,26 @@ async function getChatCompletion(prompt) {
                 }
             }
         );
+        console.log(response.data); // Log the response to check its structure
         return response.data[0].generated_text; // Return the response
     } catch (error) {
         console.error('Error fetching completion:', error);
         throw error;
     }
 }
+
+// AI endpoint
+app.post('/api/ai', async (req, res) => {
+    const { prompt } = req.body;
+
+    try {
+        const completion = await getChatCompletion(prompt); // Use the function to get the AI completion
+        res.json({ response: completion });
+    } catch (error) {
+        console.error('Error with Hugging Face API:', error.message, error.response ? error.response.data : '');
+        res.status(500).json({ message: 'Error with Hugging Face API', error: error.message });
+    }
+});
 
 // Check if data.json exists
 const checkFileExists = (filePath) => {
@@ -132,19 +147,6 @@ app.post('/api/login', (req, res) => {
         res.json({ message: 'Login successful!' });
     } else {
         res.status(401).json({ message: 'Invalid username or password.' });
-    }
-});
-
-// AI endpoint
-app.post('/api/ai', async (req, res) => {
-    const { prompt } = req.body;
-
-    try {
-        const completion = await getChatCompletion(prompt); // Use the function to get the AI completion
-        res.json({ response: completion });
-    } catch (error) {
-        console.error('Error with Hugging Face API:', error.message, error.response ? error.response.data : '');
-        res.status(500).json({ message: 'Error with Hugging Face API', error: error.message });
     }
 });
 

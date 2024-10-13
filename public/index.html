@@ -69,6 +69,9 @@
             padding: 20px;
             background-color: #00264d; /* Darker navy blue */
             border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #knowledgeDisplay {
@@ -113,13 +116,43 @@
                 margin: 4px 0;
             }
         }
+
+        /* New styles for compact boxes */
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .form-box {
+            background-color: #00264d; /* Darker navy blue */
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-box h2 {
+            text-align: center;
+        }
+
+        .form-box form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-box input, .form-box textarea, .form-box button {
+            width: 100%;
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
 <h1 data-i18n="welcome">Welcome</h1>
 
 <h1>Test Backend Connection</h1>
-    <p id="test-message"></p>
+<p id="test-message"></p>
 
 <!-- Login Section -->
 <div id="login-container">
@@ -144,33 +177,35 @@
 </div>
 
 <div id="content-container" style="display: none;">
-    <div id="add-knowledge-container" class="knowledge-form">
-        <h2 data-i18n="add_knowledge">Add Knowledge</h2>
-        <form id="knowledgeForm">
-            <label for="knowledgeTitle" data-i18n="title">Title:</label>
-            <input type="text" id="knowledgeTitle" name="title" required><br><br>
+    <div class="form-container">
+        <div id="add-knowledge-container" class="form-box">
+            <h2 data-i18n="add_knowledge">Add Knowledge</h2>
+            <form id="knowledgeForm">
+                <label for="knowledgeTitle" data-i18n="title">Title:</label>
+                <input type="text" id="knowledgeTitle" name="title" required><br><br>
 
-            <label for="knowledgeDescription" data-i18n="description">Description:</label>
-            <textarea id="knowledgeDescription" name="description" required></textarea><br><br>
+                <label for="knowledgeDescription" data-i18n="description">Description:</label>
+                <textarea id="knowledgeDescription" name="description" required></textarea><br><br>
 
-            <label for="knowledgeLocation" data-i18n="location">Location:</label>
-            <input type="text" id="knowledgeLocation" name="location" readonly required><br><br>
+                <label for="knowledgeLocation" data-i18n="location">Location:</label>
+                <input type="text" id="knowledgeLocation" name="location" readonly required><br><br>
 
-            <button type="submit" data-i18n="submit_knowledge">Submit Knowledge</button>
-        </form>
-    </div>
+                <button type="submit" data-i18n="submit_knowledge">Submit Knowledge</button>
+            </form>
+        </div>
 
-    <div id="file-upload-container">
-        <h2 data-i18n="upload_files">Upload Files</h2>
-        <form id="fileUploadForm">
-            <input type="file" id="fileInput" name="file" accept=".pdf, .docx, .xlsx" required><br><br>
-            <button type="submit" data-i18n="upload_file">Upload File</button>
-        </form>
-    </div>
+        <div id="file-upload-container" class="form-box">
+            <h2 data-i18n="upload_files">Upload Files</h2>
+            <form id="fileUploadForm">
+                <input type="file" id="fileInput" name="file" accept=".pdf, .docx, .xlsx" required><br><br>
+                <button type="submit" data-i18n="upload_file">Upload File</button>
+            </form>
+        </div>
 
-    <div id="knowledgeDisplay">
-        <h2 data-i18n="knowledge_hub">Knowledge Hub</h2>
-        <p data-i18n="select_marker">Select a marker on the map to see knowledge articles.</p>
+        <div id="knowledgeDisplay" class="form-box">
+            <h2 data-i18n="knowledge_hub">Knowledge Hub</h2>
+            <p data-i18n="select_marker">Select a marker on the map to see knowledge articles.</p>
+        </div>
     </div>
 </div>
 
@@ -182,15 +217,25 @@
     <button onclick="changeLanguage('ta')">தமிழ்</button>
 </div>
 
-<!-- Add this below the existing content in public/index.html -->
-<div id="ai-chatbot-container" class="knowledge-form">
-    <h2>AI Chatbot</h2>
-    <form id="aiChatForm">
-        <label for="aiPrompt">Ask the AI:</label>
-        <input type="text" id="aiPrompt" name="prompt" required>
-        <button type="submit">Submit</button>
-    </form>
-    <div id="aiResponse"></div>
+<!-- Chat Widget -->
+<div id="chat-widget" class="chat-widget">
+    <div id="chat-header" class="chat-header">
+        <span>AI Chatbot</span>
+        <span id="chat-close" class="chat-close">&times;</span>
+    </div>
+    <div id="chat-body" class="chat-body">
+        <form id="aiChatForm">
+            <label for="aiPrompt">Ask the AI:</label>
+            <input type="text" id="aiPrompt" name="prompt" required>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="aiResponse"></div>
+    </div>
+</div>
+
+<!-- Button to open the chat widget -->
+<div id="chat-button" class="chat-button">
+    <button id="open-chatbot-btn">Chat with AI</button>
 </div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

@@ -187,26 +187,49 @@ document.getElementById('fileUploadForm').addEventListener('submit', function (e
 });
 
 // Handle AI chatbot form submission
-document.getElementById('aiChatForm').addEventListener('submit', function (event) {
-    event.preventDefault();
+var chatWidget = document.getElementById("chat-widget");
+var chatButton = document.getElementById("open-chatbot-btn");
+var chatClose = document.getElementById("chat-close");
 
+// When the user clicks the button, open the chat widget
+chatButton.onclick = function() {
+    chatWidget.style.display = "block";
+    chatButton.parentElement.style.display = "none";
+}
+
+// When the user clicks on <span> (x), close the chat widget
+chatClose.onclick = function() {
+    chatWidget.style.display = "none";
+    chatButton.parentElement.style.display = "block";
+}
+
+// When the user clicks anywhere outside of the chat widget, close it
+window.onclick = function(event) {
+    if (event.target == chatWidget) {
+        chatWidget.style.display = "none";
+        chatButton.parentElement.style.display = "block";
+    }
+}
+
+// Handle form submission for the AI chatbot
+document.getElementById('aiChatForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
     const prompt = document.getElementById('aiPrompt').value;
 
-    fetch('http://localhost:5000/api/ai', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ prompt }),
-    })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('aiResponse').innerText = data.response;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('aiResponse').innerText = 'An error occurred.';
+    try {
+        const response = await fetch('http://localhost:5000/api/ai', { // Ensure the URL is correct
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ prompt })
         });
+        const data = await response.json();
+        document.getElementById('aiResponse').innerText = data.response;
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('aiResponse').innerText = 'Error fetching response';
+    }
 });
 
 // Initialize i18next with translations
