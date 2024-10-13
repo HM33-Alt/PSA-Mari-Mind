@@ -121,6 +121,20 @@ app.post('/api/knowledge', (req, res) => {
     res.status(201).json({ message: 'Knowledge article added successfully' });
 });
 
+// Define the /api/login endpoint
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+    const data = loadData();
+    const user = data.users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+        req.session.user = user;
+        res.json({ message: 'Login successful!' });
+    } else {
+        res.status(401).json({ message: 'Invalid username or password.' });
+    }
+});
+
 // AI endpoint
 app.post('/api/ai', async (req, res) => {
     const { prompt } = req.body;

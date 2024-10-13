@@ -68,16 +68,6 @@ knowledgeLocations.forEach(location => {
     });
 });
 
-// Authentication system for contribution to the knowledge hub
-let isAuthenticated = false;
-
-// Sample user data
-const users = [
-    { username: 'admin', password: 'password' },
-    { username: 'user1', password: 'password1' },
-    { username: 'user2', password: 'password2' }
-];
-
 // Handle login
 document.getElementById('login-btn').addEventListener('click', () => {
     const username = document.getElementById('username').value;
@@ -104,8 +94,6 @@ document.getElementById('login-btn').addEventListener('click', () => {
                 // Show the content container
                 document.getElementById('content-container').style.display = 'flex';
 
-                // Show the forum link
-                document.getElementById('forum-link-container').style.display = 'block';
             } else {
                 alert('Invalid username or password.');
             }
@@ -128,8 +116,6 @@ document.getElementById('logout-btn').addEventListener('click', () => {
     // Hide the content container
     document.getElementById('content-container').style.display = 'none';
 
-    // Hide the forum link
-    document.getElementById('forum-link-container').style.display = 'none';
 });
 
 // Check login state on page load
@@ -137,7 +123,6 @@ window.onload = function() {
     if (localStorage.getItem('loggedIn') === 'true') {
         document.getElementById('login-container').style.display = 'none';
         document.getElementById('logout-btn').style.display = 'block';
-        document.getElementById('forum-link-container').style.display = 'block';
         document.getElementById('content-container').style.display = 'flex';
     }
 };
