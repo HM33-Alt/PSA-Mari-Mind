@@ -182,6 +182,17 @@
     <button onclick="changeLanguage('ta')">தமிழ்</button>
 </div>
 
+<!-- Add this below the existing content in public/index.html -->
+<div id="ai-chatbot-container" class="knowledge-form">
+    <h2>AI Chatbot</h2>
+    <form id="aiChatForm">
+        <label for="aiPrompt">Ask the AI:</label>
+        <input type="text" id="aiPrompt" name="prompt" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="aiResponse"></div>
+</div>
+
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.0/dist/leaflet.timedimension.min.js"></script>
 <script src="https://unpkg.com/i18next/i18next.js"></script>

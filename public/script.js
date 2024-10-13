@@ -72,43 +72,75 @@ knowledgeLocations.forEach(location => {
 let isAuthenticated = false;
 
 // Sample user data
-const userData = {
-    username: 'admin',
-    password: 'password' // Change in production
-};
+const users = [
+    { username: 'admin', password: 'password' },
+    { username: 'user1', password: 'password1' },
+    { username: 'user2', password: 'password2' }
+];
 
 // Handle login
 document.getElementById('login-btn').addEventListener('click', () => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    // Simple authentication check
-    if (username === userData.username && password === userData.password) {
-        isAuthenticated = true;
-        alert('Login successful!');
+    // Send login request to the backend
+    fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === 'Login successful!') {
+                localStorage.setItem('loggedIn', 'true');
+                alert('Login successful!');
 
-        // Hide login form and show logout button
-        document.getElementById('login-container').style.display = 'none';
-        document.getElementById('logout-btn').style.display = 'block'; // Show logout button
+                // Hide login form and show logout button
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('logout-btn').style.display = 'block';
 
-        // Show the content container
-        document.getElementById('content-container').style.display = 'flex';
-    } else {
-        alert('Invalid username or password.');
-    }
+                // Show the content container
+                document.getElementById('content-container').style.display = 'flex';
+
+                // Show the forum link
+                document.getElementById('forum-link-container').style.display = 'block';
+            } else {
+                alert('Invalid username or password.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred during login.');
+        });
 });
 
 // Handle logout
 document.getElementById('logout-btn').addEventListener('click', () => {
-    isAuthenticated = false;
+    localStorage.removeItem('loggedIn');
+    alert('Logout successful!');
 
     // Show login form and hide logout button
     document.getElementById('login-container').style.display = 'flex';
-    document.getElementById('logout-btn').style.display = 'none'; // Hide logout button
+    document.getElementById('logout-btn').style.display = 'none';
 
     // Hide the content container
     document.getElementById('content-container').style.display = 'none';
+
+    // Hide the forum link
+    document.getElementById('forum-link-container').style.display = 'none';
 });
+
+// Check login state on page load
+window.onload = function() {
+    if (localStorage.getItem('loggedIn') === 'true') {
+        document.getElementById('login-container').style.display = 'none';
+        document.getElementById('logout-btn').style.display = 'block';
+        document.getElementById('forum-link-container').style.display = 'block';
+        document.getElementById('content-container').style.display = 'flex';
+    }
+};
 
 // Handle form submission for the "Add Knowledge" section
 document.getElementById('knowledgeForm').addEventListener('submit', function (event) {
@@ -167,6 +199,29 @@ document.getElementById('fileUploadForm').addEventListener('submit', function (e
 
     // Update the displayed articles and files for the current location
     displayKnowledge(location);
+});
+
+// Handle AI chatbot form submission
+document.getElementById('aiChatForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const prompt = document.getElementById('aiPrompt').value;
+
+    fetch('http://localhost:5000/api/ai', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('aiResponse').innerText = data.response;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('aiResponse').innerText = 'An error occurred.';
+        });
 });
 
 // Initialize i18next with translations

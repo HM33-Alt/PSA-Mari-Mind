@@ -1,7 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const session = require('express-session');
 const fs = require('fs');
+const axios = require('axios'); // Import axios
+require('dotenv').config();
+
 const app = express();
 const port = 5000;
 
@@ -10,16 +14,43 @@ app.use(bodyParser.json());
 
 // Configure CORS
 const corsOptions = {
-    origin: 'http://192.168.1.8:8080',
+    origin: 'http://127.0.0.1:8080',
     optionsSuccessStatus: 200
 };
 
 app.use(cors(corsOptions));
 
+// Configure session
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set to true if using HTTPS
+}));
+
+async function getChatCompletion(prompt) {
+    try {
+        const response = await axios.post(
+            'https://api-inference.huggingface.co/models/microsoft/GODEL-v1_1-large-seq2seq',
+            { inputs: prompt },
+            {
+                headers: {
+                    'Authorization': `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+        return response.data[0].generated_text; // Return the response
+    } catch (error) {
+        console.error('Error fetching completion:', error);
+        throw error;
+    }
+}
+
 // Check if data.json exists
 const checkFileExists = (filePath) => {
     if (!fs.existsSync(filePath)) {
-        fs.writeFileSync(filePath, JSON.stringify({ knowledgeArticles: {}, uploadedFiles: {} }));
+        fs.writeFileSync(filePath, JSON.stringify({ users: [], knowledgeArticles: {}, uploadedFiles: {} }));
     }
 };
 
@@ -68,7 +99,6 @@ app.post('/api/files', (req, res) => {
     res.status(201).json({ message: 'File uploaded successfully' });
 });
 
-
 // Define the /api/knowledge endpoint
 app.get('/api/knowledge', (req, res) => {
     const data = loadData();
@@ -82,6 +112,19 @@ app.post('/api/knowledge', (req, res) => {
     data.knowledgeArticles[location].push(article);
     saveData(data);
     res.status(201).json({ message: 'Knowledge article added successfully' });
+});
+
+// AI endpoint
+app.post('/api/ai', async (req, res) => {
+    const { prompt } = req.body;
+
+    try {
+        const completion = await getChatCompletion(prompt); // Use the function to get the AI completion
+        res.json({ response: completion });
+    } catch (error) {
+        console.error('Error with Hugging Face API:', error.message, error.response ? error.response.data : '');
+        res.status(500).json({ message: 'Error with Hugging Face API', error: error.message });
+    }
 });
 
 // Start the server
