@@ -218,6 +218,9 @@ function displayKnowledge(locationName) {
 knowledgeLocations.forEach(location => {
     const marker = L.marker(location.coords).addTo(markerLayer);
 
+    // Bind tooltip to display location name on hover
+    marker.bindTooltip(location.name, { permanent: false, direction: 'top' });
+
     // Update knowledge display section on marker click
     marker.on('click', () => {
         displayKnowledge(location.name); // Display articles below the map
