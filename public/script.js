@@ -96,7 +96,8 @@ const knowledgeLocations = [
     { name: 'Romania - PSA BDP Office', coords: [45.9432, 24.9668] },
     { name: 'Spain - PSA BDP Office', coords: [40.4637, -3.7492] },
 
-    { name: 'Sweden - PSA BDP Office', coords: [60.1282, 18.6435] }
+    { name: 'Sweden - PSA BDP Office', coords: [60.1282, 18.6435] },
+
 // Turkiye locations
     { name: 'Turkiye - Deep Sea / Coastal Terminal', coords: [38.9637, 35.2433] },
     { name: 'Turkiye - PSA BDP Office', coords: [38.9647, 35.2443] },
