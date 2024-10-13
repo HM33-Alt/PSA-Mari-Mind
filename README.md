@@ -1,5 +1,8 @@
 # PSA Mari-Mind
 
+## Github Repo Link
+https://github.com/HM33-Alt/PSA-Mari-Mind 
+
 ## Overview
 This project is a web application that includes functionalities such as user login/logout, file uploads, knowledge addition, and a map-based knowledge hub. It also features a language switcher and an AI chatbot for user interaction.
 
