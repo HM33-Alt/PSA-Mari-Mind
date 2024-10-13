@@ -1,20 +1,27 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 const fs = require('fs');
-const axios = require('axios'); // Import axios
+const axios = require('axios');
 require('dotenv').config();
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // Middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Configure CORS
+const allowedOrigins = ['http://192.168.1.8:8080'];
+
 const corsOptions = {
-    origin: 'http://127.0.0.1:8080',
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     optionsSuccessStatus: 200
 };
 
