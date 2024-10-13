@@ -1,3 +1,8 @@
+/* General styles */
+* {
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
 #content-container {
     display: flex;
     justify-content: center;
@@ -10,6 +15,8 @@
 #add-knowledge-container, #file-upload-container, #knowledgeDisplay {
     flex: 1;
     min-width: 300px; /* Ensure a minimum width for better readability */
+    max-width: 300px; /* Ensure a maximum width for consistency */
+    padding: 20px; /* Standardized padding */
 }
 
 #button-container {
@@ -18,22 +25,21 @@
     margin-bottom: 20px;
 }
 
-
 /* Chat widget styles */
- .chat-widget {
-     display: none; /* Hidden by default */
-     position: fixed;
-     bottom: 0;
-     right: 15px;
-     width: 300px;
-     max-height: 400px;
-     background-color: #00264d; /* Darker navy blue */
-     border-radius: 10px 10px 0 0;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-     color: #ffffff; /* White text color */
-     overflow: hidden;
-     z-index: 1000;
- }
+.chat-widget {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    width: 300px;
+    max-height: 400px;
+    background-color: #00264d; /* Darker navy blue */
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff; /* White text color */
+    overflow: hidden;
+    z-index: 1000;
+}
 
 .chat-header {
     background-color: #004080; /* Darker navy blue */

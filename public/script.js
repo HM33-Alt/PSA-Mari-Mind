@@ -1,9 +1,165 @@
 // Example knowledgeLocations array
 const knowledgeLocations = [
-    { name: 'Location 1', coords: [51.505, -0.09] },
-    { name: 'Location 2', coords: [51.515, -0.1] },
-    // Add more locations as needed
-];
+    { name: 'Bangladesh - PSA Marine', coords: [23.685, 90.356] },
+
+    // China locations, spaced out by a small amount
+    { name: 'China - Deep Sea / Coastal Terminal', coords: [35.8617, 104.1954] },
+    { name: 'China - PSA BDP Office', coords: [35.8627, 104.1964] },
+    { name: 'China - Rail / Inland Terminal', coords: [35.8637, 104.1974] },
+    { name: 'China - Inland Container Depot / Warehouse', coords: [35.8647, 104.1984] },
+
+    // India locations, spaced slightly
+    { name: 'India - Deep Sea / Coastal Terminal', coords: [20.5937, 78.9629] },
+    { name: 'India - PSA BDP Office', coords: [20.5947, 78.9639] },
+    { name: 'India - Rail / Inland Terminal', coords: [20.5957, 78.9649] },
+    { name: 'India - Inland Container Depot / Warehouse', coords: [20.5967, 78.9659] },
+
+    // Indonesia locations, spaced slightly
+    { name: 'Indonesia - Deep Sea / Coastal Terminal', coords: [-0.7893, 113.9213] },
+    { name: 'Indonesia - PSA BDP Office', coords: [-0.7883, 113.9223] },
+    { name: 'Indonesia - Rail / Inland Terminal', coords: [-0.7873, 113.9233] },
+    { name: 'Indonesia - Inland Container Depot / Warehouse', coords: [-0.7863, 113.9243] },
+
+    { name: 'Japan - Deep Sea / Coastal Terminal', coords: [36.2048, 138.2529] },
+    { name: 'Kazakhstan - Rail / Inland Terminal', coords: [48.0196, 66.9237] },
+
+    // Malaysia locations
+    { name: 'Malaysia - PSA BDP Office', coords: [4.2105, 101.9758] },
+    { name: 'Malaysia - PSA Marine', coords: [4.2115, 101.9768] },
+
+    // Oman locations
+    { name: 'Oman - PSA BDP Office', coords: [21.4735, 55.9754] },
+    { name: 'Oman - PSA Marine', coords: [21.4745, 55.9764] },
+
+    { name: 'Philippines - PSA BDP Office', coords: [12.8797, 121.774] },
+    { name: 'Qatar - PSA BDP Office', coords: [25.3548, 51.1839] },
+
+    // Saudi Arabia locations
+    { name: 'Saudi Arabia - Deep Sea / Coastal Terminal', coords: [23.8859, 45.0792] },
+    { name: 'Saudi Arabia - PSA BDP Office', coords: [23.8869, 45.0802] },
+    { name: 'Saudi Arabia - Rail / Inland Terminal', coords: [23.8879, 45.0812] },
+    { name: 'Saudi Arabia - Inland Container Depot / Warehouse', coords: [23.8889, 45.0822] },
+
+    // Singapore locations
+    { name: 'Singapore - Deep Sea / Coastal Terminal', coords: [1.3521, 103.8198] },
+    { name: 'Singapore - PSA BDP Office', coords: [1.3531, 103.8208] },
+    { name: 'Singapore - Inland Container Depot / Warehouse', coords: [1.3541, 103.8218] },
+
+    // South Korea locations
+    { name: 'South Korea - Deep Sea / Coastal Terminal', coords: [35.9078, 127.7669] },
+    { name: 'South Korea - PSA BDP Office', coords: [35.9088, 127.7679] },
+
+    // Thailand locations
+    { name: 'Thailand - Deep Sea / Coastal Terminal', coords: [15.8700, 100.9925] },
+    { name: 'Thailand - PSA BDP Office', coords: [15.8710, 100.9935] },
+    { name: 'Thailand - Rail / Inland Terminal', coords: [15.8720, 100.9945] },
+    { name: 'Thailand - Inland Container Depot / Warehouse', coords: [15.8730, 100.9955] },
+
+    { name: 'UAE - PSA BDP Office', coords: [23.4241, 53.8478] },
+
+    // Vietnam locations
+    { name: 'Vietnam - Deep Sea / Coastal Terminal', coords: [14.0583, 108.2772] },
+    { name: 'Vietnam - PSA BDP Office', coords: [14.0593, 108.2782] },
+    { name: 'Vietnam - Inland Container Depot / Warehouse', coords: [14.0603, 108.2792] },
+
+    // Belgium locations
+    { name: 'Belgium - Deep Sea / Coastal Terminal', coords: [50.5039, 4.4699] },
+    { name: 'Belgium - PSA BDP Office', coords: [50.5049, 4.4709] },
+    { name: 'Belgium - Inland Container Depot / Warehouse', coords: [50.5059, 4.4719] },
+
+    { name: 'Czech Republic - PSA BDP Office', coords: [49.8175, 15.473] },
+    { name: 'Denmark - PSA BDP Office', coords: [56.2639, 9.5018] },
+
+    // France locations
+    { name: 'France - PSA BDP Office', coords: [46.6034, 1.8883] },
+    { name: 'France - Inland Container Depot / Warehouse', coords: [46.6044, 1.8893] },
+
+    // Germany locations
+    { name: 'Germany - PSA BDP Office', coords: [51.1657, 10.4515] },
+    { name: 'Germany - Rail / Inland Terminal', coords: [51.1667, 10.4525] },
+
+    { name: 'Ireland - PSA BDP Office', coords: [53.1424, -7.6921] },
+
+    // Italy locations
+    { name: 'Italy - Deep Sea / Coastal Terminal', coords: [41.8719, 12.5674] },
+    { name: 'Italy - PSA BDP Office', coords: [41.8729, 12.5684] },
+    { name: 'Italy - Rail / Inland Terminal', coords: [41.8739, 12.5694] },
+    { name: 'Italy - Inland Container Depot / Warehouse', coords: [41.8749, 12.5704] },
+
+    { name: 'Netherlands - PSA BDP Office', coords: [52.1326, 5.2913] },
+    { name: 'Poland - PSA BDP Office', coords: [51.9194, 19.1451] },
+
+    // Portugal locations
+    { name: 'Portugal - Deep Sea / Coastal Terminal', coords: [39.3999, -8.2245] },
+    { name: 'Portugal - PSA BDP Office', coords: [39.4009, -8.2255] },
+
+    { name: 'Romania - PSA BDP Office', coords: [45.9432, 24.9668] },
+    { name: 'Spain - PSA BDP Office', coords: [40.4637, -3.7492] },
+
+    { name: 'Sweden - PSA BDP Office', coords: [60.1282, 18.6435] }
+// Turkiye locations
+    { name: 'Turkiye - Deep Sea / Coastal Terminal', coords: [38.9637, 35.2433] },
+    { name: 'Turkiye - PSA BDP Office', coords: [38.9647, 35.2443] },
+    { name: 'Turkiye - Rail / Inland Terminal', coords: [38.9657, 35.2453] },
+    { name: 'Turkiye - Inland Container Depot / Warehouse', coords: [38.9667, 35.2463] },
+
+// UK locations
+    { name: 'UK - PSA BDP Office', coords: [55.3781, -3.4360] },
+    { name: 'UK - PSA Marine', coords: [55.3791, -3.4370] },
+
+// Argentina locations
+    { name: 'Argentina - Deep Sea / Coastal Terminal', coords: [-38.4161, -63.6167] },
+    { name: 'Argentina - PSA BDP Office', coords: [-38.4151, -63.6157] },
+    { name: 'Argentina - Rail / Inland Terminal', coords: [-38.4141, -63.6147] },
+    { name: 'Argentina - Inland Container Depot / Warehouse', coords: [-38.4131, -63.6137] },
+
+// Brazil locations
+    { name: 'Brazil - PSA BDP Office', coords: [-14.2350, -51.9253] },
+    { name: 'Brazil - Inland Container Depot / Warehouse', coords: [-14.2340, -51.9243] },
+
+// Canada locations
+    { name: 'Canada - Deep Sea / Coastal Terminal', coords: [56.1304, -106.3468] },
+    { name: 'Canada - PSA BDP Office', coords: [56.1314, -106.3478] },
+    { name: 'Canada - Rail / Inland Terminal', coords: [56.1324, -106.3488] },
+    { name: 'Canada - Inland Container Depot / Warehouse', coords: [56.1334, -106.3498] },
+
+    { name: 'Chile - PSA BDP Office', coords: [-35.6751, -71.5430] },
+
+// Colombia locations
+    { name: 'Colombia - Deep Sea / Coastal Terminal', coords: [4.5709, -74.2973] },
+    { name: 'Colombia - PSA BDP Office', coords: [4.5719, -74.2983] },
+    { name: 'Colombia - Rail / Inland Terminal', coords: [4.5729, -74.2993] },
+    { name: 'Colombia - Inland Container Depot / Warehouse', coords: [4.5739, -74.3003] },
+
+    { name: 'Ecuador - PSA Marine', coords: [-1.8312, -78.1834] },
+
+// Panama locations
+    { name: 'Panama - Deep Sea / Coastal Terminal', coords: [8.5379, -80.7821] },
+    { name: 'Panama - PSA Marine', coords: [8.5389, -80.7831] },
+
+// Peru locations
+    { name: 'Peru - PSA BDP Office', coords: [-9.1900, -75.0152] },
+    { name: 'Peru - PSA Marine', coords: [-9.1890, -75.0142] },
+
+// Uruguay locations
+    { name: 'Uruguay - PSA BDP Office', coords: [-32.5228, -55.7658] },
+    { name: 'Uruguay - Inland Container Depot / Warehouse', coords: [-32.5218, -55.7648] },
+
+// USA locations
+    { name: 'USA - Deep Sea / Coastal Terminal', coords: [37.0902, -95.7129] },
+    { name: 'USA - PSA BDP Office', coords: [37.0912, -95.7139] },
+    { name: 'USA - Inland Container Depot / Warehouse', coords: [37.0922, -95.7149] },
+
+    { name: 'Egypt - PSA BDP Office', coords: [26.8206, 30.8025] },
+    { name: 'Morocco - PSA BDP Office', coords: [31.7917, -7.0926] },
+
+// Australia locations
+    { name: 'Australia - PSA BDP Office', coords: [-25.2744, 133.7751] },
+    { name: 'Australia - PSA Marine', coords: [-25.2754, 133.7761] },
+
+    { name: 'New Zealand - PSA BDP Office', coords: [-40.9006, 174.8860] },
+]
+
 
 // Initialize the map
 const map = L.map('map').setView([51.505, -0.09], 13);
