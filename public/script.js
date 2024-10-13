@@ -238,13 +238,14 @@ i18next.init({
     resources: {
         en: {
             translation: {
-                "welcome": "PSA Port-Stop",
+                "welcome": "PSA Mari-Mind",
+                "chat_with_ai": "Chat with AI",
                 "login": "Login",
                 "logout": "Logout",
                 "add_knowledge": "Add Knowledge",
                 "title": "Title:",
                 "description": "Description:",
-                "location": "Location:",
+                "location": "Selected Location:",
                 "submit_knowledge": "Submit Knowledge",
                 "upload_files": "Upload Files",
                 "upload_file": "Upload File",
@@ -254,50 +255,53 @@ i18next.init({
         },
         zh: {
             translation: {
-                "welcome": "PSA Port-Stop",
+                "welcome": "PSA Mari-Mind",
+                "chat_with_ai": "与人工智能对话 (仅限英文）",
                 "login": "登录",
-                "logout": "登出",
+                "logout": "注销",
                 "add_knowledge": "添加知识",
-                "title": "标题:",
-                "description": "描述:",
-                "location": "位置:",
+                "title": "标题：",
+                "description": "描述：",
+                "location": "选择的位置：",
                 "submit_knowledge": "提交知识",
                 "upload_files": "上传文件",
                 "upload_file": "上传文件",
                 "knowledge_hub": "知识中心",
-                "select_marker": "选择地图上的标记以查看知识文章。"
+                "select_marker": "选择地图上的标记即可查看知识文章。"
             }
         },
         ms: {
             translation: {
-                "welcome": "PSA Port Stop",
+                "welcome": "PSA Mari-Mind",
+                "chat_with_ai": "Untuk Bercakap Dengan AI (Bahasa Inggeris Sahaja)",
                 "login": "Log masuk",
-                "logout": "Log keluar",
+                "logout": "Logout",
                 "add_knowledge": "Tambah Pengetahuan",
                 "title": "Tajuk:",
                 "description": "Penerangan:",
-                "location": "Lokasi:",
-                "submit_knowledge": "Hantar Pengetahuan",
-                "upload_files": "Muat Naik Fail",
-                "upload_file": "Muat Naik Fail",
-                "knowledge_hub": "Pusat Pengetahuan",
-                "select_marker": "Pilih penanda di peta untuk melihat artikel pengetahuan."
+                "location": "Lokasi yang Dipilih:",
+                "submit_knowledge": "Serahkan Pengetahuan",
+                "upload_files": "Muat naik Fail",
+                "upload_file": "Muat naik Fail",
+                "knowledge_hub": "Hab Pengetahuan",
+                "select_marker": "Pilih penanda pada peta untuk melihat artikel pengetahuan."
             }
         },
         ta: {
             translation: {
-                "welcome": "PSA Port-Stop",
-                "login": "உள்நுழைய",
+                "welcome": "PSA Mari-Mind",
+                "chat_with_ai": "AI உடன் பேச (ஆங்கிலம் மட்டுமே)",
+                "login": "உள்நுழை",
                 "logout": "வெளியேறு",
-                "add_knowledge": "அறிவைச் சேர்க்கவும்",
+                "add_knowledge": "தகவல் பதிவேற்றம்",
                 "title": "தலைப்பு:",
                 "description": "விளக்கம்:",
                 "location": "இடம்:",
-                "submit_knowledge": "அறிவைச் சமர்ப்பிக்கவும்",
-                "upload_files": "கோப்புகளைப் பதிவேற்றவும்",
-                "upload_file": "கோப்பைப் பதிவேற்றவும்",
-                "knowledge_hub": "அறிவு மையம்",
-                "select_marker": "அறிவுக் கட்டுரைகளைப் பார்க்க வரைபடத்தில் ஒரு குறியைத் தேர்ந்தெடுக்கவும்."
+                "submit_knowledge": "தகவல் பதிவேற்றம்",
+                "upload_files": "ஆவணம் பதிவேற்று",
+                "upload_file": "ஆவணம் பதிவேற்று",
+                "knowledge_hub": "தகவல் மையம்",
+                "select_marker": "தகவல் கட்டுரைகளைப் பார்க்க வரைபடத்தில் ஒரு சுட்டி தேர்ந்தெடுக்கவும்."
             }
         }
     }

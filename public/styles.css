@@ -83,6 +83,27 @@
     background-color: #0059b3; /* Lighter navy blue on hover */
 }
 
+#language-switcher {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+#language-switcher button {
+    font-size: 12px; /* Smaller font size */
+    padding: 5px 10px; /* Smaller padding */
+    background-color: #004080; /* Darker navy blue */
+    color: #ffffff; /* White text color */
+    border: none;
+    cursor: pointer;
+}
+
+#language-switcher button:hover {
+    background-color: #0059b3; /* Lighter navy blue on hover */
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
     #content-container {
