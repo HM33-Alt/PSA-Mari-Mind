@@ -1,20 +1,21 @@
-// Example knowledgeLocations array
+// PSA Locations extracted from https://www.psaannualreport.com/chapter-page/#global-footprint
+
 const knowledgeLocations = [
     { name: 'Bangladesh - PSA Marine', coords: [23.685, 90.356] },
 
-    // China locations, spaced out by a small amount
+    // China locations
     { name: 'China - Deep Sea / Coastal Terminal', coords: [35.8617, 104.1954] },
     { name: 'China - PSA BDP Office', coords: [35.8627, 104.1964] },
     { name: 'China - Rail / Inland Terminal', coords: [35.8637, 104.1974] },
     { name: 'China - Inland Container Depot / Warehouse', coords: [35.8647, 104.1984] },
 
-    // India locations, spaced slightly
+    // India locations
     { name: 'India - Deep Sea / Coastal Terminal', coords: [20.5937, 78.9629] },
     { name: 'India - PSA BDP Office', coords: [20.5947, 78.9639] },
     { name: 'India - Rail / Inland Terminal', coords: [20.5957, 78.9649] },
     { name: 'India - Inland Container Depot / Warehouse', coords: [20.5967, 78.9659] },
 
-    // Indonesia locations, spaced slightly
+    // Indonesia locations
     { name: 'Indonesia - Deep Sea / Coastal Terminal', coords: [-0.7893, 113.9213] },
     { name: 'Indonesia - PSA BDP Office', coords: [-0.7883, 113.9223] },
     { name: 'Indonesia - Rail / Inland Terminal', coords: [-0.7873, 113.9233] },
@@ -158,9 +159,9 @@ const knowledgeLocations = [
     { name: 'Australia - PSA BDP Office', coords: [-25.2744, 133.7751] },
     { name: 'Australia - PSA Marine', coords: [-25.2754, 133.7761] },
 
+// New Zealand locations
     { name: 'New Zealand - PSA BDP Office', coords: [-40.9006, 174.8860] },
 ]
-
 
 // Initialize the map
 const map = L.map('map').setView([51.505, -0.09], 2);
@@ -306,7 +307,7 @@ document.getElementById('knowledgeForm').addEventListener('submit', function (ev
     const newArticle = {
         title: title,
         description: description,
-        fullText: `Description: ${description}`, // Customize as needed
+        fullText: `Description: ${description}`
     };
 
     // Add to the knowledge articles object
@@ -322,6 +323,7 @@ document.getElementById('knowledgeForm').addEventListener('submit', function (ev
     displayKnowledge(location);
 });
 
+// File upload functionality
 document.getElementById('fileUploadForm').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent the default form submission
 
@@ -363,7 +365,7 @@ chatClose.onclick = function() {
     chatButton.parentElement.style.display = "block";
 }
 
-// When the user clicks anywhere outside of the chat widget, close it
+// When the user clicks anywhere outside the chat widget, close it
 window.onclick = function(event) {
     if (event.target == chatWidget) {
         chatWidget.style.display = "none";
@@ -375,20 +377,31 @@ window.onclick = function(event) {
 document.getElementById('aiChatForm').addEventListener('submit', async function(event) {
     event.preventDefault();
     const prompt = document.getElementById('aiPrompt').value;
+    const responseDiv = document.getElementById('aiResponses'); // Ensure this element exists
+
+    if (!responseDiv) {
+        console.error('Error: aiResponses element not found');
+        return;
+    }
 
     try {
-        const response = await fetch('http://localhost:5000/api/ai', { // Ensure the URL is correct
+        const response = await fetch('http://localhost:5000/api/ai', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ prompt })
         });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
         const data = await response.json();
-        document.getElementById('aiResponse').innerText = data.response;
+        responseDiv.innerText = data.response; // Display the AI response
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById('aiResponse').innerText = 'Error fetching response';
+        responseDiv.innerText = 'Error fetching response'; // Display error message
     }
 });
 
@@ -481,34 +494,34 @@ function changeLanguage(lng) {
     });
 }
 
-// public/script.js
+// Fetch request to test the backend connection
 fetch('http://localhost:5000/api/test')
-    .then(response => response.json())
+    .then(response => response.json()) // Parse the JSON response
     .then(data => {
-        console.log(data.message); // Should log "Backend is connected!"
-        // document.getElementById('test-message').innerText = data.message;
+        console.log(data.message); // Log the message from the response
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => console.error('Error:', error)); // Log any errors
 
+// Fetch request to upload a file
 fetch('http://localhost:5000/api/files', {
-    method: 'POST',
+    method: 'POST', // HTTP method
     headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json', // Content type of the request
     },
     body: JSON.stringify({
-        location: 'Location 1',
-        file: 'file-name.pdf'
+        location: 'Location 1', // Location to upload the file
+        file: 'file-name.pdf' // File name
     }),
 })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('Network response was not ok'); // Throw an error if the response is not ok
         }
-        return response.json();
+        return response.json(); // Parse the JSON response
     })
     .then(data => {
-        console.log('Success:', data);
+        console.log('Success:', data); // Log the success message
     })
     .catch((error) => {
-        console.error('Error:', error);
+        console.error('Error:', error); // Log any errors
     });

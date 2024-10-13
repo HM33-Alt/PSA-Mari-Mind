@@ -28,7 +28,7 @@
             width: 100%;
         }
 
-        /* Container for upload and display of SOPs */
+        /* Container for upload and display of documents */
         #sop-container {
             margin: 20px;
         }
@@ -173,42 +173,45 @@
 
 <div id="profile-page">
     <h2>User Profile</h2>
-    <p>Username: <span id="profile-username"></span></p>
+    <p>Username: <span id="profile-username"></span></p> <!-- Display username in profile -->
 </div>
 
 <div id="content-container" style="display: none;">
     <div class="form-container">
-
+        <!-- File upload section -->
         <div id="file-upload-container" class="form-box">
             <h2 data-i18n="upload_files">Upload Files</h2>
             <form id="fileUploadForm">
-                <input type="file" id="fileInput" name="file" accept=".pdf, .docx, .xlsx" required><br><br>
-                <button type="submit" data-i18n="upload_file">Upload File</button>
+                <input type="file" id="fileInput" name="file" accept=".pdf, .docx, .xlsx" required><br><br> <!-- File input for uploads -->
+                <button type="submit" data-i18n="upload_file">Upload File</button> <!-- Submit button for file upload -->
             </form>
         </div>
 
+        <!-- Knowledge addition section -->
         <div id="add-knowledge-container" class="form-box">
             <h2 data-i18n="add_knowledge">Add Knowledge</h2>
             <form id="knowledgeForm">
                 <label for="knowledgeTitle" data-i18n="title">Title:</label>
-                <input type="text" id="knowledgeTitle" name="title" required><br><br>
+                <input type="text" id="knowledgeTitle" name="title" required><br><br> <!-- Title input for knowledge -->
 
                 <label for="knowledgeDescription" data-i18n="description">Description:</label>
-                <textarea id="knowledgeDescription" name="description" required></textarea><br><br>
+                <textarea id="knowledgeDescription" name="description" required></textarea><br><br> <!-- Description input for knowledge -->
 
                 <label for="knowledgeLocation" data-i18n="location">Location:</label>
-                <input type="text" id="knowledgeLocation" name="location" readonly required><br><br>
+                <input type="text" id="knowledgeLocation" name="location" readonly required><br><br> <!-- Location input (read-only) -->
 
-                <button type="submit" data-i18n="submit_knowledge">Submit Knowledge</button>
+                <button type="submit" data-i18n="submit_knowledge">Submit Knowledge</button> <!-- Submit button for knowledge -->
             </form>
         </div>
 
+        <!-- Knowledge display section -->
         <div id="knowledgeDisplay" class="form-box">
             <h2 data-i18n="knowledge_hub">Knowledge Hub</h2>
-            <p data-i18n="select_marker">Select a marker on the map to see knowledge articles.</p>
+            <p data-i18n="select_marker">Select a marker on the map to see knowledge articles.</p> <!-- Instructions for using the knowledge hub -->
         </div>
     </div>
 </div>
+
 
 <!-- Language Switcher -->
 <div id="language-switcher" style="text-align: center; margin-bottom: 20px;">
@@ -221,16 +224,16 @@
 <!-- Chat Widget -->
 <div id="chat-widget" class="chat-widget">
     <div id="chat-header" class="chat-header">
-        <span>AI Chatbot</span>
-        <span id="chat-close" class="chat-close">&times;</span>
+        <span>AI Chatbot</span> <!-- Header for the chat widget -->
+        <span id="chat-close" class="chat-close">&times;</span> <!-- Close button for the chat widget -->
     </div>
     <div id="chat-body" class="chat-body">
         <form id="aiChatForm">
             <label for="aiPrompt">Ask the AI:</label>
-            <input type="text" id="aiPrompt" name="prompt" required>
-            <button type="submit">Submit</button>
+            <input type="text" id="aiPrompt" name="prompt" required> <!-- Input for user prompts to the AI -->
+            <button type="submit">Submit</button> <!-- Submit button for AI chat -->
         </form>
-        <div id="aiResponse"></div>
+        <div id="aiResponses"></div> <!-- Area for displaying AI responses -->
     </div>
 </div>
 
