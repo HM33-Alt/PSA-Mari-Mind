@@ -21,6 +21,21 @@ This project is a web application that includes functionalities such as user log
 - i18next (for internationalization)
 - npm (for package management)
 
+
+### AI ChatBot Model
+- It is powered by using the endpoint API of *Microsoft-GODEL-v1_1-large-seq2seq*
+
+## Citation for GODEL model:
+Peng, B., Galley, M., He, P., Brockett, C., Liden, L., Nouri, E., Yu, Z., Dolan, B., & Gao, J. (2022).  
+*GODEL: Large-scale pre-training for goal-directed dialog*. arXiv.  
+[https://www.microsoft.com/en-us/research/publication/godel-large-scale-pre-training-for-goal-directed-dialog/](https://www.microsoft.com/en-us/research/publication/godel-large-scale-pre-training-for-goal-directed-dialog/)
+
+## Citation for Hugging Face Model:
+Hugging Face. (2022).  
+*GODEL-v1_1-large-seq2seq*.  
+[https://huggingface.co/microsoft/GODEL-v1_1-large-seq2seq](https://huggingface.co/microsoft/GODEL-v1_1-large-seq2seq)
+
+
 ## File Structure
 - `index.html`: Main HTML file containing the structure of the web application.
 - `script.js`: JavaScript file containing the logic for various functionalities.
