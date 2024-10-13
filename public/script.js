@@ -163,7 +163,7 @@ const knowledgeLocations = [
 
 
 // Initialize the map
-const map = L.map('map').setView([51.505, -0.09], 13);
+const map = L.map('map').setView([51.505, -0.09], 2);
 
 // Add a base tile layer (e.g., OpenStreetMap)
 const baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -483,7 +483,7 @@ fetch('http://localhost:5000/api/test')
     .then(response => response.json())
     .then(data => {
         console.log(data.message); // Should log "Backend is connected!"
-        document.getElementById('test-message').innerText = data.message;
+        // document.getElementById('test-message').innerText = data.message;
     })
     .catch(error => console.error('Error:', error));
 

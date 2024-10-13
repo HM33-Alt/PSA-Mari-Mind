@@ -80,9 +80,11 @@
     background-color: #004080; /* Darker navy blue */
     color: #ffffff; /* White text color */
     border: none;
-    padding: 10px 20px;
+    padding: 15px 30px; /* Increase padding for a bigger button */
     border-radius: 5px;
     cursor: pointer;
+    font-weight: bold; /* Bold the text */
+    font-size: 16px; /* Increase font size */
 }
 
 .chat-button button:hover {
@@ -108,6 +110,19 @@
 
 #language-switcher button:hover {
     background-color: #0059b3; /* Lighter navy blue on hover */
+}
+
+/* Style for uploaded files list */
+#knowledgeDisplay ul {
+    color: #ffffff; /* Change the color of the file name to white */
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+}
+
+#knowledgeDisplay li {
+    color: #ffffff; /* Change the color of the file name to white */
+    text-decoration: none; /* Remove underline */
+    margin-bottom: 10px; /* Add some space between list items */
 }
 
 /* Responsive styles */

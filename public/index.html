@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MariMind</title>
+    <title>PSA Mari-Mind</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-timedimension@1.1.0/dist/leaflet.timedimension.control.min.css" />
@@ -67,7 +67,7 @@
         .knowledge-form, #file-upload-container, #knowledgeDisplay {
             margin: 20px;
             padding: 20px;
-            background-color: #00264d; /* Darker navy blue */
+            background-color: #0077ff; /* Darker navy blue */
             border-radius: 10px;
             display: flex;
             flex-direction: column;
@@ -125,7 +125,7 @@
         }
 
         .form-box {
-            background-color: #00264d; /* Darker navy blue */
+            background-color: #0077ff; /* Darker navy blue */
             border-radius: 10px;
             margin: 10px;
             padding: 20px;
@@ -178,6 +178,15 @@
 
 <div id="content-container" style="display: none;">
     <div class="form-container">
+
+        <div id="file-upload-container" class="form-box">
+            <h2 data-i18n="upload_files">Upload Files</h2>
+            <form id="fileUploadForm">
+                <input type="file" id="fileInput" name="file" accept=".pdf, .docx, .xlsx" required><br><br>
+                <button type="submit" data-i18n="upload_file">Upload File</button>
+            </form>
+        </div>
+
         <div id="add-knowledge-container" class="form-box">
             <h2 data-i18n="add_knowledge">Add Knowledge</h2>
             <form id="knowledgeForm">
@@ -191,14 +200,6 @@
                 <input type="text" id="knowledgeLocation" name="location" readonly required><br><br>
 
                 <button type="submit" data-i18n="submit_knowledge">Submit Knowledge</button>
-            </form>
-        </div>
-
-        <div id="file-upload-container" class="form-box">
-            <h2 data-i18n="upload_files">Upload Files</h2>
-            <form id="fileUploadForm">
-                <input type="file" id="fileInput" name="file" accept=".pdf, .docx, .xlsx" required><br><br>
-                <button type="submit" data-i18n="upload_file">Upload File</button>
             </form>
         </div>
 
