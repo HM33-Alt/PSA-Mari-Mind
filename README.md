@@ -85,6 +85,3 @@ Hugging Face. (2022).
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
-## Contact
-For any inquiries or issues, please contact [your-email@example.com].
