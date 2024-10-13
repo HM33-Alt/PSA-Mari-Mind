@@ -14,14 +14,35 @@ This project is a web application that includes functionalities such as user log
 - **Language Switcher**: Supports multiple languages (English, 中文, Bahasa Melayu, தமிழ்).
 - **AI Chatbot**: Users can interact with an AI chatbot.
 
-## Technologies Used
-- HTML
-- CSS
-- JavaScript
-- Leaflet.js (for map functionalities)
-- i18next (for internationalization)
-- npm (for package management)
+## Setup Instructions
+1. Click and download the ZIP file
 
+2. **Get your Hugging Face API key**:
+   - Go to the [Hugging Face website](https://huggingface.co/).
+   - Sign up for an account if you don't have one.
+   - Navigate to your account settings and find the API keys section.
+   - Generate a new API key and copy it.
+
+3. Access the ZIP file
+   
+4. **Create `.env` file at the root directory**:
+    ```plaintext
+    HUGGINGFACE_API_KEY=***Your Hugging Face API key***
+    ```
+5. Right click and select to run in your command terminal
+   
+6. **Install dependencies**:
+    ```sh
+    npm install
+    ```
+7. **Run the application**:
+    ```sh
+    npm start
+    ```
+8. **Multiple IP Addresses**: When you run the application, several IP addresses will be listed. Choose the appropriate one based on your access needs.
+
+9. **Local Access**: If you are running the application on your local machine, you can access it using:
+   - **URL**: `http://localhost:8080`
 
 ### AI ChatBot Model
 - It is powered by using the endpoint API of *Microsoft-GODEL-v1_1-large-seq2seq*
@@ -36,37 +57,18 @@ Hugging Face. (2022).
 *GODEL-v1_1-large-seq2seq*.  
 [https://huggingface.co/microsoft/GODEL-v1_1-large-seq2seq](https://huggingface.co/microsoft/GODEL-v1_1-large-seq2seq)
 
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- Leaflet.js (for map functionalities)
+- i18next (for internationalization)
+- npm (for package management)
 
 ## File Structure
 - `index.html`: Main HTML file containing the structure of the web application.
 - `script.js`: JavaScript file containing the logic for various functionalities.
 - `styles.css`: CSS file for styling the web application.
-
-## Setup Instructions
-1. **Clone the repository**:
-    ```sh
-    git clone <repository-url>
-    cd <repository-directory>
-    ```
-
-2. **Get your Hugging Face API key**:
-   - Go to the [Hugging Face website](https://huggingface.co/).
-   - Sign up for an account if you don't have one.
-   - Navigate to your account settings and find the API keys section.
-   - Generate a new API key and copy it.
-
-3. **Create `.env` file at the root directory**:
-    ```plaintext
-    HUGGINGFACE_API_KEY=***Your Hugging Face API key***
-    ```
-
-4. **Install dependencies**:
-    ```sh
-    npm install
-    ```
-
-5. **Run the application**:
-   Open `index.html` in a web browser.
 
 ## Usage
 - **Login/Logout**: Use the login button to authenticate and the logout button to end the session.
